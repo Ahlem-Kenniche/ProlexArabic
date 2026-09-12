@@ -1,0 +1,15 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+SELECT ?pivot ?arabicName ?frenchName
+WHERE {
+  ?pivot prolex:hasType prolex:Type_23 .
+  ?pivot prolex:hasLexicalEntry ?entryAR .
+  ?pivot prolex:hasLexicalEntry ?entryFR .
+  ?entryAR ontolex:canonicalForm ?formAR .
+  ?formAR ontolex:writtenRep ?arabicName .
+  ?entryFR ontolex:canonicalForm ?formFR .
+  ?formFR ontolex:writtenRep ?frenchName .
+  FILTER(lang(?arabicName) = "ar")
+  FILTER(lang(?frenchName) = "fr")
+}
+LIMIT 10

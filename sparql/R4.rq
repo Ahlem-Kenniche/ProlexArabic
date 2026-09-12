@@ -1,0 +1,7 @@
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+
+SELECT (COUNT(?form) AS ?numberOfArabicForms)
+WHERE {
+  ?form ontolex:writtenRep ?writtenRep .
+  FILTER(lang(?writtenRep) = "ar")
+}

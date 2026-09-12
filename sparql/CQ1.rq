@@ -1,0 +1,14 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+
+SELECT ?entry ?form ?arabicForm
+WHERE {
+
+  prolex:Pivot_46762 prolex:hasLexicalEntry ?entry .
+
+  ?entry ontolex:canonicalForm|ontolex:otherForm ?form .
+
+  ?form ontolex:writtenRep ?arabicForm .
+
+  FILTER(lang(?arabicForm) = "ar")
+}

@@ -1,0 +1,17 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+
+SELECT ?entity ?entityName
+WHERE {
+
+  prolex:Pivot_45415 prolex:accessibleVia ?entity .
+
+  ?entity prolex:hasLexicalEntry ?entry .
+
+  ?entry ontolex:canonicalForm ?form .
+
+  ?form ontolex:writtenRep ?entityName .
+
+  FILTER(lang(?entityName) = "en")
+}
+LIMIT 50
