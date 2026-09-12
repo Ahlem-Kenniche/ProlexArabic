@@ -7,7 +7,11 @@ leurs instances, dérivés, pivots et types.
 import sqlite3
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "prolexbase.db")
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DB_PATH = os.environ.get(
+    "PROLEXARABIC_DB",
+    os.path.join(PROJECT_ROOT, "data_sample", "prolexbase_sample.db"),
+)
 
 
 def _conn():
