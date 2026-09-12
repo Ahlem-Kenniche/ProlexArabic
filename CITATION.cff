@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "ProlexArabic: A Reproducible Toolkit for Arabic Proper-Name Generation and Semantic Publication"
+message: "If you use ProlexArabic, please cite the accompanying EACL 2027 demonstration paper."
+type: software
+authors:
+  - family-names: "Kenniche"
+    given-names: "Ahlem"
+  - family-names: "Lougmiri"
+    given-names: "Zekri"
+  - family-names: "Maurel"
+    given-names: "Denis"
+license: MIT
+version: 0.1.0
+date-released: 2026-09-12
+keywords:
+  - Arabic proper names
+  - Arabic morphology
+  - Prolexbase
+  - ProLMF
+  - OntoLex-Lemon
+  - RDF
+  - SKOS
+  - SPARQL

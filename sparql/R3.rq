@@ -1,0 +1,6 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+
+SELECT (COUNT(?entry) AS ?numberOfLexicalEntries)
+WHERE {
+  ?entry a prolex:LexicalEntry .
+}
