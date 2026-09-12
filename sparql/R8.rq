@@ -1,8 +1,0 @@
-PREFIX prolex: <https://example.org/prolexbase/ontology#>
-PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
-
-SELECT (COUNT(?form) AS ?numberOfAliases)
-WHERE {
-  ?entry ontolex:otherForm ?form .
-  ?form prolex:formType "alias" .
-}
