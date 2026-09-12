@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def ok(msg): print(f"[OK] {msg}")
 def main():
     # 1. SQLite demo data
-    db = ROOT / "app" / "prolexbase.db"
+    db = ROOT / "data_sample" / "prolexbase_sample.db"
     con = sqlite3.connect(db)
     counts = {t: con.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
               for t in ["prolexeme_arb", "instance_arb", "derivative_arb", "pivot", "type"]}
