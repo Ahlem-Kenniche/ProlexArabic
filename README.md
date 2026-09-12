@@ -21,7 +21,7 @@ pip install -r requirements.txt
 python scripts/smoke_test.py
 ```
 
-The smoke test is **offline and self-contained**: it checks the bundled SQLite database, Turtle files, CQ1–CQ10 SPARQL queries, and ProLMF XML/XSD validation. It does not require MySQL or a Groq key.
+The smoke test is **offline and self-contained**: it checks the bundled sample SQLite database (`data_sample/prolexbase_sample.db`), Turtle files, CQ1–CQ10 SPARQL queries, and ProLMF XML/XSD validation. It does not require MySQL or a Groq key.
 
 ## Run the English demo
 
@@ -35,7 +35,7 @@ The application provides three main views:
 2. **Rule System** — generate Arabic inflectional/derivational forms using explicit linguistic rules;
 3. **Extraction & Classification** — optional LLM-assisted extraction/classification, followed by the same rule-based generation pipeline.
 
-The first two components work without any external API.
+The first two components work without any external API. By default, the Streamlit application reads the bundled sample database at `data_sample/prolexbase_sample.db`. A different local SQLite database can be selected with the `PROLEXARABIC_DB` environment variable.
 
 ## Optional Groq configuration
 
@@ -59,13 +59,13 @@ Hosted model availability changes over time, so the live demo model is configura
 
 ```text
 ProlexArabic/
-├── app/                 # English Streamlit demo + bundled SQLite database
+├── app/                 # English Streamlit demo
 ├── generator/           # Arabic generation rules and tests
 ├── prolmf/              # ProLMF exporter, XSD schema, XML validator
 ├── rdf/                 # RDF generator + curated SPARQL reproduction fixture
 ├── ontology/            # OntoLex-Lemon/SKOS ontology mapping
 ├── sparql/              # Competency queries CQ1-CQ10 (+ auxiliary queries)
-├── data_sample/         # Small CSV/SQLite samples
+├── data_sample/         # Bundled sample SQLite database + CSV samples
 ├── outputs/             # Expected examples and full-run quantitative statistics
 ├── docs/                # Detailed reproduction guide
 ├── scripts/             # Smoke test, query runner, optional utilities
@@ -111,3 +111,4 @@ This EACL demonstration package is non-anonymous. Author information may therefo
 ## License
 
 Source code is released under the MIT License. See `LICENSE-PROLEXBASE` and the documentation for the status of redistributed Prolexbase data.
+
