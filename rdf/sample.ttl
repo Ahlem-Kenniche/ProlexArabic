@@ -1,0 +1,77 @@
+@prefix prolex: <https://example.org/prolexbase/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Curated reproduction fixture for CQ1-CQ10.
+# This compact graph is intentionally constructed to exercise the public SPARQL
+# competency queries. It is NOT the full Prolexbase RDF dump and MUST NOT be used
+# to recompute the quantitative corpus statistics in outputs/quantitative_results.csv.
+
+prolex:Type_27 prolex:typeLabel "country"@en .
+prolex:Type_23 prolex:typeLabel "city"@en .
+prolex:Type_14 prolex:typeLabel "dynasty"@en .
+
+# CQ1: Arabic lexical forms associated with Pivot_46762 (Egypt).
+prolex:Pivot_46762 a prolex:Pivot ; prolex:hasType prolex:Type_27 ;
+    prolex:hasLexicalEntry prolex:Entry_Egypt_ar, prolex:Entry_Egypt_en .
+prolex:Entry_Egypt_ar a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Egypt_ar ; ontolex:otherForm prolex:Form_Egypt_nisba .
+prolex:Form_Egypt_ar ontolex:writtenRep "مصر"@ar .
+prolex:Form_Egypt_nisba prolex:formType "derivative" ; ontolex:writtenRep "مصري"@ar .
+prolex:Entry_Egypt_en a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Egypt_en .
+prolex:Form_Egypt_en ontolex:writtenRep "Egypt"@en .
+
+# CQ2/CQ7/CQ9: country derivative and synonymy fixture (Azerbaijan).
+prolex:Pivot_Azerbaijan a prolex:Pivot ; prolex:hasType prolex:Type_27 ;
+    prolex:hasLexicalEntry prolex:Entry_Azerbaijan_en, prolex:Entry_Azerbaijan_ar ;
+    skos:closeMatch prolex:Pivot_Azerbaijan_Republic .
+prolex:Entry_Azerbaijan_en a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Azerbaijan_en .
+prolex:Form_Azerbaijan_en ontolex:writtenRep "Azerbaijan"@en .
+prolex:Entry_Azerbaijan_ar a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Azerbaijan_ar ; ontolex:otherForm prolex:Form_Azerbaijan_deriv .
+prolex:Form_Azerbaijan_ar ontolex:writtenRep "أذربيجان"@ar .
+prolex:Form_Azerbaijan_deriv prolex:formType "derivative" ; ontolex:writtenRep "أذربيجاني"@ar .
+prolex:Pivot_Azerbaijan_Republic a prolex:Pivot ; prolex:hasType prolex:Type_27 ; prolex:hasLexicalEntry prolex:Entry_Azerbaijan_Republic_en .
+prolex:Entry_Azerbaijan_Republic_en a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Azerbaijan_Republic_en .
+prolex:Form_Azerbaijan_Republic_en ontolex:writtenRep "Republic of Azerbaijan"@en .
+
+# CQ3: French alias fixture.
+prolex:Entry_Bassilac_fr a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Bassilac_fr ; ontolex:otherForm prolex:Alias_Bassilac_fr .
+prolex:Form_Bassilac_fr ontolex:writtenRep "Bassillac"@fr .
+prolex:Alias_Bassilac_fr prolex:formType "alias" ; ontolex:writtenRep "Bassilac"@fr .
+
+# CQ4: meronymy fixture for Algeria.
+prolex:Pivot_45530 a prolex:Pivot ; prolex:hasType prolex:Type_27 ; prolex:hasLexicalEntry prolex:Entry_Algeria_en ;
+    prolex:hasMeronym prolex:Pivot_Algiers, prolex:Pivot_Oran, prolex:Pivot_Annaba, prolex:Pivot_Tlemcen .
+prolex:Entry_Algeria_en a prolex:LexicalEntry ; ontolex:canonicalForm prolex:Form_Algeria_en .
+prolex:Form_Algeria_en ontolex:writtenRep "Algeria"@en .
+prolex:Pivot_Algiers prolex:hasType prolex:Type_23 ; prolex:hasLexicalEntry prolex:Entry_Algiers_en .
+prolex:Entry_Algiers_en ontolex:canonicalForm prolex:Form_Algiers_en .
+prolex:Form_Algiers_en ontolex:writtenRep "Algiers"@en .
+prolex:Pivot_Oran prolex:hasType prolex:Type_23 ; prolex:hasLexicalEntry prolex:Entry_Oran_en .
+prolex:Entry_Oran_en ontolex:canonicalForm prolex:Form_Oran_en .
+prolex:Form_Oran_en ontolex:writtenRep "Oran"@en .
+prolex:Pivot_Annaba prolex:hasType prolex:Type_23 ; prolex:hasLexicalEntry prolex:Entry_Annaba_en .
+prolex:Entry_Annaba_en ontolex:canonicalForm prolex:Form_Annaba_en .
+prolex:Form_Annaba_en ontolex:writtenRep "Annaba"@en .
+prolex:Pivot_Tlemcen prolex:hasType prolex:Type_23 ; prolex:hasLexicalEntry prolex:Entry_Tlemcen_en .
+prolex:Entry_Tlemcen_en ontolex:canonicalForm prolex:Form_Tlemcen_en .
+prolex:Form_Tlemcen_en ontolex:writtenRep "Tlemcen"@en .
+
+# CQ5: multilingual equivalents fixture (Bordeaux).
+prolex:Pivot_Bordeaux a prolex:Pivot ; prolex:hasType prolex:Type_23 ;
+    prolex:hasLexicalEntry prolex:Entry_Bordeaux_ar, prolex:Entry_Bordeaux_fr .
+prolex:Entry_Bordeaux_ar ontolex:canonicalForm prolex:Form_Bordeaux_ar .
+prolex:Form_Bordeaux_ar ontolex:writtenRep "بوردو"@ar .
+prolex:Entry_Bordeaux_fr ontolex:canonicalForm prolex:Form_Bordeaux_fr .
+prolex:Form_Bordeaux_fr ontolex:writtenRep "Bordeaux"@fr .
+
+# CQ6: dynasty fixture.
+prolex:Pivot_Safavid a prolex:Pivot ; prolex:hasType prolex:Type_14 ; prolex:hasLexicalEntry prolex:Entry_Safavid_ar .
+prolex:Entry_Safavid_ar ontolex:canonicalForm prolex:Form_Safavid_ar .
+prolex:Form_Safavid_ar ontolex:writtenRep "السلالة الصفوية"@ar .
+
+# CQ8: accessibility fixture.
+prolex:Pivot_45415 a prolex:Pivot ; prolex:accessibleVia prolex:Pivot_Afghanistan .
+prolex:Pivot_Afghanistan a prolex:Pivot ; prolex:hasType prolex:Type_27 ; prolex:hasLexicalEntry prolex:Entry_Afghanistan_en .
+prolex:Entry_Afghanistan_en ontolex:canonicalForm prolex:Form_Afghanistan_en .
+prolex:Form_Afghanistan_en ontolex:writtenRep "Afghanistan"@en .

@@ -1,0 +1,17 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+
+SELECT ?pivot ?form ?name
+WHERE {
+
+  ?pivot prolex:hasType prolex:Type_14 .
+
+  ?pivot prolex:hasLexicalEntry ?entry .
+
+  ?entry ontolex:canonicalForm|ontolex:otherForm ?form .
+
+  ?form ontolex:writtenRep ?name .
+
+  FILTER(lang(?name) = "ar")
+}
+LIMIT 50

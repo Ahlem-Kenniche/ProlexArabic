@@ -1,0 +1,15 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+
+SELECT ?entry ?form ?alias
+WHERE {
+
+  ?entry ontolex:otherForm ?form .
+
+  ?form prolex:formType "alias" .
+
+  ?form ontolex:writtenRep ?alias .
+
+  FILTER(lang(?alias) = "fr")
+}
+LIMIT 10

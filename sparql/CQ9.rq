@@ -1,0 +1,16 @@
+PREFIX prolex: <https://example.org/prolexbase/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+SELECT ?pivot ?pivotName ?synonym ?synonymName
+WHERE {
+  ?pivot skos:closeMatch ?synonym .
+  ?pivot prolex:hasLexicalEntry ?e1 .
+  ?e1 ontolex:canonicalForm ?f1 .
+  ?f1 ontolex:writtenRep ?pivotName .
+  ?synonym prolex:hasLexicalEntry ?e2 .
+  ?e2 ontolex:canonicalForm ?f2 .
+  ?f2 ontolex:writtenRep ?synonymName .
+  FILTER(lang(?pivotName) = "en")
+  FILTER(lang(?synonymName) = "en")
+}
+LIMIT 10

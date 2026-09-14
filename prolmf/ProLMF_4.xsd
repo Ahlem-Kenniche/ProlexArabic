@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:pxb="https://www.ortolang.fr/market/lexicons/prolex/v4.1"
+targetNamespace="https://www.ortolang.fr/market/lexicons/prolex/v4.1"
+elementFormDefault="qualified">
+
+<!-- ================= ROOT ================= -->
+
+<xs:element name="LexicalResource">
+    <xs:complexType>
+        <xs:sequence>
+
+            <xs:element ref="pxb:GlobalInformation"/>
+
+            <xs:element ref="pxb:Lexicon"
+                        maxOccurs="unbounded"/>
+
+            <xs:element ref="pxb:SenseAxis"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<!-- ================= GLOBAL INFO ================= -->
+
+<xs:element name="GlobalInformation">
+    <xs:complexType>
+
+        <xs:attribute name="languageCoding" type="xs:string" use="required"/>
+        <xs:attribute name="scriptCoding" type="xs:string" use="required"/>
+        <xs:attribute name="characterCoding" type="xs:string" use="required"/>
+        <xs:attribute name="entrySource" type="xs:string" use="required"/>
+        <xs:attribute name="resourceName" type="xs:string" use="required"/>
+        <xs:attribute name="version" type="xs:string" use="required"/>
+
+    </xs:complexType>
+</xs:element>
+
+<!-- ================= LEXICON ================= -->
+
+<xs:element name="Lexicon">
+    <xs:complexType>
+
+        <xs:sequence>
+
+            <xs:element ref="pxb:LexicalEntry"
+                        maxOccurs="unbounded"/>
+
+            <xs:element ref="pxb:SubcategorizationFrame"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="languageIdentifier" type="xs:string" use="required"/>
+        <xs:attribute name="script" type="xs:string" use="optional"/>
+
+    </xs:complexType>
+</xs:element>
+
+<!-- ================= LEXICAL ENTRY ================= -->
+
+<xs:element name="LexicalEntry">
+    <xs:complexType>
+
+        <xs:sequence>
+
+            <xs:element ref="pxb:Lemma"/>
+
+            <xs:element ref="pxb:WordForm"
+                        maxOccurs="unbounded"/>
+
+            <xs:element ref="pxb:Sense"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="partOfSpeech" use="required">
+
+            <xs:simpleType>
+
+                <xs:restriction base="xs:string">
+
+                    <xs:enumeration value="noun"/>
+                    <xs:enumeration value="adjective"/>
+                    <xs:enumeration value="verb"/>
+                    <xs:enumeration value="prefix"/>
+
+                </xs:restriction>
+
+            </xs:simpleType>
+
+        </xs:attribute>
+
+    </xs:complexType>
+</xs:element>
+
+<!-- ================= LEMMA ================= -->
+
+<xs:element name="Lemma" type="xs:string"/>
+
+<!-- ================= WORDFORM ================= -->
+
+<xs:element name="WordForm">
+
+    <xs:complexType>
+
+        <xs:sequence>
+
+            <xs:element ref="pxb:FormRepresentation"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="grammaticalGender" type="xs:string"/>
+        <xs:attribute name="grammaticalNumber" type="xs:string"/>
+        <xs:attribute name="grammaticalCase" type="xs:string"/>
+        <xs:attribute name="grammaticalAnimacy" type="xs:string"/>
+        <xs:attribute name="grammaticalDefiniteness" type="xs:string"/>
+        <xs:attribute name="grammaticalDegree" type="xs:string"/>
+        <xs:attribute name="grammaticalTam" type="xs:string"/>
+        <xs:attribute name="grammaticalPerson" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= FORM REPRESENTATION ================= -->
+
+<xs:element name="FormRepresentation" type="xs:string"/>
+
+<!-- ================= SENSE ================= -->
+
+<xs:element name="Sense">
+
+    <xs:complexType>
+
+        <xs:sequence>
+
+            <xs:element ref="pxb:MonolingualExternalRef"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+            <xs:element ref="pxb:SyntacticBehaviour"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="idSense" type="xs:string" use="required"/>
+
+        <xs:attribute name="refSenseAxis" type="xs:string" use="required"/>
+
+        <xs:attribute name="termProvenance" type="xs:string" use="required"/>
+
+        <xs:attribute name="label" type="xs:string" use="required"/>
+
+        <xs:attribute name="refSense" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= MONOLINGUAL EXTERNAL REF ================= -->
+
+<xs:element name="MonolingualExternalRef">
+
+    <xs:complexType>
+
+        <xs:attribute name="externalSystem" type="xs:string"/>
+
+        <xs:attribute name="externalReference" type="xs:string" use="required"/>
+
+        <xs:attribute name="frequency" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= SYNTACTIC BEHAVIOUR ================= -->
+
+<xs:element name="SyntacticBehaviour">
+
+    <xs:complexType>
+
+        <xs:attribute name="refSubcategorizationFrame" type="xs:string"/>
+
+        <xs:attribute name="refSenseAxisRelation" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= SUBCATEGORIZATION FRAME ================= -->
+
+<xs:element name="SubcategorizationFrame">
+
+    <xs:complexType>
+
+        <xs:simpleContent>
+
+            <xs:extension base="xs:string">
+
+                <xs:attribute name="id" type="xs:string" use="required"/>
+
+                <xs:attribute name="introducer" type="xs:string"/>
+
+                <xs:attribute name="grammaticalGender" type="xs:string"/>
+
+                <xs:attribute name="grammaticalNumber" type="xs:string"/>
+
+                <xs:attribute name="restrictionRank" type="xs:string"/>
+
+            </xs:extension>
+
+        </xs:simpleContent>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= SENSE AXIS ================= -->
+
+<xs:element name="SenseAxis">
+
+    <xs:complexType>
+
+        <xs:sequence>
+
+            <xs:element ref="pxb:InterlingualExternalRef"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+            <xs:element ref="pxb:SenseAxisRelation"
+                        minOccurs="0"
+                        maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="id" type="xs:string" use="required"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= INTERLINGUAL EXTERNAL REF ================= -->
+
+<xs:element name="InterlingualExternalRef">
+
+    <xs:complexType>
+
+        <xs:attribute name="externalSystem" type="xs:string"/>
+
+        <xs:attribute name="externalReference" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+<!-- ================= SENSE AXIS RELATION ================= -->
+
+<xs:element name="SenseAxisRelation">
+
+    <xs:complexType>
+
+        <xs:attribute name="id" type="xs:string"/>
+
+        <xs:attribute name="label" type="xs:string" use="required"/>
+
+        <xs:attribute name="refSenseAxis" type="xs:string" use="required"/>
+
+        <xs:attribute name="usageNote" type="xs:string"/>
+
+        <xs:attribute name="subjectField" type="xs:string"/>
+
+    </xs:complexType>
+
+</xs:element>
+
+</xs:schema>
