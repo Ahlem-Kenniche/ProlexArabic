@@ -1,7 +1,0 @@
-PREFIX prolex: <https://example.org/prolexbase/ontology#>
-
-SELECT (COUNT(*) AS ?numberOfCrossLingualLinks)
-WHERE {
-  ?pivot prolex:hasLexicalEntry ?entry1, ?entry2 .
-  FILTER(?entry1 != ?entry2)
-}

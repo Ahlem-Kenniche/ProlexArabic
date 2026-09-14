@@ -1,4 +1,0 @@
-SELECT (COUNT(*) AS ?totalTriples)
-WHERE {
-  ?s ?p ?o .
-}
