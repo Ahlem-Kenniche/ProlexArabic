@@ -1,9 +1,0 @@
-database:
-  host: "localhost"
-  user: "your_username"
-  password: "your_password"
-  name: "prolexbase_4"
-
-output:
-  rdf_file: "rdf/prolexbase-full.ttl"
-  prolmf_file: "outputs/prolmf_full.xml"
